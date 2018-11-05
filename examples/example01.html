@@ -49,22 +49,26 @@
             // the following values can obtained as follow:
             // I = cols * R + C
             var map = {
-                rows: 10,
-                cols: 7,
-                // e.g. First Reserved Seat [1, 2] = 7 * 1 + 2 = 9
-                reserved: [9, 14, 17],
-                disabled: [12, 21, 23]
+                rows: 9,
+                cols: 9,
+                // e.g. Reserved Seat [Row: 1, Col: 2] = 7 * 1 + 2 = 9
+                reserved: [1, 2, 3, 5, 6, 7, 9, 10, 11, 12, 14, 15, 16, 17, 18, 19, 20, 21],
+                disabled: [0, 8],
+                disabledRows: [4],
+                disabledCols: [4]
             };
 
             var types = [
-                { type: "regular", color: "orange", price: 10 },
-                { type: "reduced", color: "#af0000", price: 7.5 },
+                { type: "regular", color: "orange", price: 10, selected: [23, 24] },
+                { type: "reduced", color: "#af0000", price: 7.5, selected: [25, 26] },
                 { type: "military", color: "red", price: 7 }
             ];
 
             var sc = new SeatchartJS(map, types);
+            var currency = "£";
+
             sc.setAssetsSrc("../src/assets");
-            sc.setCurrency("£");
+            sc.setCurrency(currency);
             sc.setSoundEnabled(false);
             sc.setShoppingCartWidth(200);
             sc.setShoppingCartHeight(250);
@@ -74,12 +78,12 @@
             sc.createLegend("legend-container");
             sc.createShoppingCart("shoppingCart-container");
 
-            // sc.onRemovedSeat = function (seatName, type, price) {
-            //     alert("removed " + seatName + " " + type + " " + price);
+            // sc.onRemovedSeat = function (seatName, type, price, seat) {
+            //    alert("Removed seat: name " + seatName + ", type " + type + ", price " + price + currency + ", index " + seat);
             // };
 
-            // sc.onAddedSeat = function (seatName, type, price) {
-            //     alert("added " + seatName + " " + type + " " + price);
+            // sc.onAddedSeat = function (seatName, type, price, seat) {
+            //    alert("Added seat: name " + seatName + ", type " + type + ", price " + price + currency + ", index " + seat);
             // };
         </script>
     </body>
